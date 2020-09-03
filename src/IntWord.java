@@ -1,26 +1,24 @@
 
 public class IntWord {
 	
-	public String convertInt(int num) {
+	public void convertInt(int num) {
 		String numString = Integer.toString(num);
 		String numWord = "";
 		int numLen = numString.length();
 		if (numLen == 1) {
-			numWord = lengthOne(num,numWord);
+			lengthOne(num,numWord);
 		} else if (numLen == 2) {
-			numWord = lengthTwo(num,numWord);
+			lengthTwo(num,numWord);
 		} else if (numLen == 3) {
-			numWord = lengthThree(num,numWord);
+			lengthThree(num,numWord);
 		} else if (numLen == 4) {
-			numWord = lengthFour(num,numWord);
+			lengthFour(num,numWord);
 		} else {
 			System.out.println("Invalid number length");
-		}
-		return numWord;
-		
+		}		
 	}
 	
-	public String lengthOne(int oneDigit,String string1) {
+	public void lengthOne(int oneDigit,String string1) {
 		String numberWord = string1;
 		switch(oneDigit) {
 		case 1 : numberWord = numberWord + " One";break;
@@ -32,44 +30,45 @@ public class IntWord {
 		case 7 : numberWord = numberWord + " Seven";break;
 		case 8 : numberWord = numberWord + " Eight";break;
 		case 9 : numberWord = numberWord + " Nine";break;
-		default: numberWord = numberWord + " Zero";break;
+		default: numberWord = numberWord + "";break;
 		}
-		return numberWord;
+		System.out.println(numberWord);
 	}
 	
-	public String lengthTwo(int twoDigit,String string2) {
+	public void lengthTwo(int twoDigit,String string2) {
 		String numberWord = string2;
 		if(twoDigit < 20) {
 			switch(twoDigit%10) {
-			case 1 : numberWord = numberWord + " Eleven";break;
-			case 2 : numberWord = numberWord + " Twelve";break;
-			case 3 : numberWord = numberWord + " Thirteen";break;
-			case 4 : numberWord = numberWord + " Fourteen";break;
-			case 5 : numberWord = numberWord + " Fifteen";break;
-			case 6 : numberWord = numberWord + " Sixteen";break;
-			case 7 : numberWord = numberWord + " Seventeen";break;
-			case 8 : numberWord = numberWord + " Eighteen";break;
-			case 9 : numberWord = numberWord + " Nineteen";break;
-			default: numberWord = numberWord + " Ten";break;
+			case 0 : numberWord = numberWord + " and Ten";break;
+			case 1 : numberWord = numberWord + " and Eleven";break;
+			case 2 : numberWord = numberWord + " and Twelve";break;
+			case 3 : numberWord = numberWord + " and Thirteen";break;
+			case 4 : numberWord = numberWord + " and Fourteen";break;
+			case 5 : numberWord = numberWord + " and Fifteen";break;
+			case 6 : numberWord = numberWord + " and Sixteen";break;
+			case 7 : numberWord = numberWord + " and Seventeen";break;
+			case 8 : numberWord = numberWord + " and Eighteen";break;
+			case 9 : numberWord = numberWord + " and Nineteen";break;
+			default: numberWord = numberWord + "";break;
 			}
+			System.out.println(numberWord);
 		} else {
 			switch(twoDigit/10) {
-			case 2 : numberWord = numberWord + " Twenty";break;
-			case 3 : numberWord = numberWord + " Thirty";break;
-			case 4 : numberWord = numberWord + " Fourty";break;
-			case 5 : numberWord = numberWord + " Fifty";break;
-			case 6 : numberWord = numberWord + " Sixty";break;
-			case 7 : numberWord = numberWord + " Seventy";break;
-			case 8 : numberWord = numberWord + " Eighty";break;
-			case 9 : numberWord = numberWord + " Ninety";break;
+			case 2 : numberWord = numberWord + " and Twenty";break;
+			case 3 : numberWord = numberWord + " and Thirty";break;
+			case 4 : numberWord = numberWord + " and Fourty";break;
+			case 5 : numberWord = numberWord + " and Fifty";break;
+			case 6 : numberWord = numberWord + " and Sixty";break;
+			case 7 : numberWord = numberWord + " and Seventy";break;
+			case 8 : numberWord = numberWord + " and Eighty";break;
+			case 9 : numberWord = numberWord + " and Ninety";break;
 			}
-			int modTen = twoDigit%100;
+			int modTen = twoDigit%10;
 			lengthOne(modTen,numberWord);
 		}
-		return numberWord;
 	}
 	
-	public String lengthThree(int threeDigit,String string3) {
+	public void lengthThree(int threeDigit,String string3) {
 		String numberWord = string3;
 		switch(threeDigit/100) {
 		case 1 : numberWord = numberWord + " One Hundred"; break;
@@ -83,16 +82,16 @@ public class IntWord {
 		case 9 : numberWord = numberWord + " Nine Hundred";break;
 		default: numberWord = numberWord + ""; break;
 		}
-		int divTen = threeDigit/10;
-		if(divTen%10==0) {
-			lengthOne(divTen,numberWord);
+//		int divTen = threeDigit/10;
+		int modHun = threeDigit%100;
+		if(modHun%100<10) {
+			lengthOne(modHun,numberWord);
 		} else {
-		lengthTwo(divTen,numberWord);
+		lengthTwo(modHun,numberWord);
 		}
-		return numberWord;
 	}
 	
-	public String lengthFour(int fourDigit,String string4) {
+	public void lengthFour(int fourDigit,String string4) {
 		String numberWord = string4;
 		switch(fourDigit/1000) {
 		case 1 : numberWord = numberWord + " One Thousand";break;
@@ -108,7 +107,6 @@ public class IntWord {
 		}
 		int modHun = fourDigit%1000;
 		lengthThree(modHun,numberWord);
-		return numberWord;
 	}
 
 }
